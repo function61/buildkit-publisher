@@ -20,7 +20,7 @@ uploadBuildArtefactsToBintray() {
 	# the CLI breaks automation unless opt-out..
 	export JFROG_CLI_OFFER_CONFIG=false
 
-	echo jfrog-cli bt upload \
+	jfrog-cli bt upload \
 		"--user=$bintrayUser" \
 		"--key=$bintrayApikey" \
 		--publish=true \
