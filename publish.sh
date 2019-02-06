@@ -17,16 +17,28 @@ uploadBuildArtefactsToBintray() {
 		exit 1
 	fi
 
+	# Bintray project in format "userOrOrg/repo/package"
+	if [[ "${BINTRAY_PROJECT:-}" =~ ([^/]+)$ ]]; then
+		local bintrayPackage="${BASH_REMATCH[1]}"
+	else
+		echo "error: BINTRAY_PROJECT not in correct format"
+		exit 1
+	fi
+
 	# the CLI breaks automation unless opt-out..
 	export JFROG_CLI_OFFER_CONFIG=false
 
+	# we've to use package/version/ (package = project) prefix for uploaded artefacts to
+	# prevent collisions, because the file namespace is scoped to the entire repo (repo
+	# in Bintray terminology means file repository like entire Docker registry, which can
+	# contain many different software projects)
 	jfrog-cli bt upload \
 		"--user=$bintrayUser" \
 		"--key=$bintrayApikey" \
 		--publish=true \
 		"$files" \
-		"$BINTRAY_PROJECT/main/$FRIENDLY_REV_ID" \
-		"$FRIENDLY_REV_ID/"
+		"$BINTRAY_PROJECT/$FRIENDLY_REV_ID" \
+		"$bintrayPackage/$FRIENDLY_REV_ID/"
 }
 
 uploadBuildArtefactsToBintray
