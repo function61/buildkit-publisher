@@ -23,3 +23,4 @@ WORKDIR /workspace
 CMD true
 
 ADD publish.sh /usr/local/bin/publish.sh
+ADD publish-gh.sh /usr/local/bin/publish-gh.sh
