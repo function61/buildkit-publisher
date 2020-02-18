@@ -12,8 +12,10 @@ RUN apk add curl bash \
 	&& apk add /tmp/glibc-2.28-r0.apk && rm /tmp/glibc-2.28-r0.apk \
 	&& curl --location --fail -o /bin/mc https://dl.minio.io/client/mc/release/linux-amd64/archive/mc.RELEASE.2018-09-26T00-42-43Z \
 	&& chmod +x /bin/mc \
-	&& curl --location --fail -o /bin/ghr https://github.com/tcnksm/ghr/releases/download/v0.13.0/ghr_v0.13.0_linux_amd64.tar.gz \
-	&& chmod +x /bin/ghr
+	&& mkdir /tmp/ghr-install \
+	&& curl --location --fail https://github.com/tcnksm/ghr/releases/download/v0.13.0/ghr_v0.13.0_linux_amd64.tar.gz | tar -xzf - -C /tmp/ghr-install \
+	&& mv /tmp/ghr-install/ghr_v0.13.0_linux_amd64/ghr /bin/ghr && chmod +x /bin/ghr \
+	&& rm -rf /tmp/ghr-install
 
 # https://developer.github.com/actions/creating-github-actions/accessing-the-runtime-environment/
 # not using /github prefix tho..
