@@ -16,4 +16,4 @@ else
 	exit 1
 fi
 
-ghr -u "$githubUser" -r "$githubRepo" -draft "$FRIENDLY_REV_ID" "$files"
+deployer releases githubrelease-mk "$githubUser" "$githubRepo" "$FRIENDLY_REV_ID" "$REV_ID" "$files"
