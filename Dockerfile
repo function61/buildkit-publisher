@@ -12,7 +12,7 @@ RUN apk add curl bash \
 	&& apk add /tmp/glibc-2.28-r0.apk && rm /tmp/glibc-2.28-r0.apk \
 	&& curl --location --fail -o /bin/mc https://dl.minio.io/client/mc/release/linux-amd64/archive/mc.RELEASE.2018-09-26T00-42-43Z \
 	&& chmod +x /bin/mc \
-	&& curl --fail --location --output /bin/deployer https://dl.bintray.com/function61/dl/deployer/20200228_1705_2b88a0a7/deployer_linux-amd64 \
+	&& curl --fail --location --output /bin/deployer https://dl.bintray.com/function61/dl/deployer/20200228_1738_94153e93/deployer_linux-amd64 \
 	&& chmod +x /bin/deployer
 
 # https://developer.github.com/actions/creating-github-actions/accessing-the-runtime-environment/
