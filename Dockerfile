@@ -5,7 +5,7 @@ FROM alpine:3.8
 # bash required by our publish.sh script
 
 RUN apk add curl bash \
-	&& curl --fail --location --output /bin/deployer https://dl.bintray.com/function61/dl/deployer/20200228_1738_94153e93/deployer_linux-amd64 \
+	&& curl --fail --location --output /bin/deployer https://function61.com/app-dl/api/github.com/function61/deployer/latest_releases_asset/deployer_linux-amd64 \
 	&& chmod +x /bin/deployer
 
 # https://developer.github.com/actions/creating-github-actions/accessing-the-runtime-environment/
